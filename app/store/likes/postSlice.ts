@@ -20,10 +20,7 @@ export const postSlice = createSlice({
       state.posts = state.posts.filter(
         (postId) => postId !== action.payload.id
       );
-      let likedPosts = localStorage.getItem("likedPosts");
-      (likedPosts as any) = likedPosts?.match(
-        new RegExp(`\\b${action.payload.id}\\b`)
-      );
+      localStorage.setItem("likedPosts", JSON.stringify(state.posts));
     },
   },
 });

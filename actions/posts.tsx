@@ -11,17 +11,6 @@ export const getPosts = async () => {
   }
 };
 
-export const getUserData = async (userId: number) => {
-  try {
-    const response = await axios.get(
-      `https://jsonplaceholder.typicode.com/users/${userId}`
-    );
-    return response.data;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export const getPost = async (postId: number) => {
   try {
     const response = await axios.get(
@@ -30,5 +19,15 @@ export const getPost = async (postId: number) => {
     return response.data;
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const getArrayPosts = async (postIds: number[]) => {
+  try {
+    const response = postIds.map((id) => getPost(id));
+    const responseArray = await Promise.all(response);
+    return responseArray;
+  } catch (error) {
+    console.error(error);
   }
 };

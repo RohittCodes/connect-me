@@ -2,7 +2,15 @@
 
 import { getPosts } from "@/actions/posts";
 import { useEffect, useState } from "react";
-import PostsContainer from "./_components/container";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import PostsContainer, {
+  PostsContainerSkeleton,
+} from "./_components/container";
 
 const PostsPage = () => {
   const [data, setData] = useState<Posts[]>([]);
@@ -23,7 +31,7 @@ const PostsPage = () => {
 
   return (
     <div className="flex flex-col h-full gap-4">
-      <div className="grid grid-rows-3 gap-4">
+      <div className="grid grid-cols-2 gap-4">
         {!isLoading
           ? data
               ?.slice(first, last)
@@ -37,12 +45,35 @@ const PostsPage = () => {
                 />
               ))
           : Array.from({ length: 20 }).map((_, index) => (
-              <div key={index}>
-                <h1>Loading...</h1>
-                <p>Loading...</p>
-              </div>
+              <PostsContainerSkeleton key={index} />
             ))}
       </div>
+      {!isLoading && (
+        <Pagination className="">
+          <PaginationContent>
+            <PaginationPrevious
+              onClick={() => {
+                setFirst(first - items);
+                setLast(last - items);
+              }}
+              className={first <= 1 ? "cursor-not-allowed" : "cursor-pointer"}
+            >
+              Previous
+            </PaginationPrevious>
+            <PaginationNext
+              onClick={() => {
+                setFirst(first + items);
+                setLast(last + items);
+              }}
+              className={
+                last >= data?.length ? "cursor-not-allowed" : "cursor-pointer"
+              }
+            >
+              Next
+            </PaginationNext>
+          </PaginationContent>
+        </Pagination>
+      )}
     </div>
   );
 };

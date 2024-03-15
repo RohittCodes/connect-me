@@ -21,3 +21,13 @@ export const getImage = async (imageId: string) => {
     console.log(error);
   }
 };
+
+export const getArrayImages = async (imageIds: string[]) => {
+  try {
+    const response = imageIds.map((id) => getImage(id));
+    const responseArray = await Promise.all(response);
+    return responseArray;
+  } catch (error) {
+    console.error(error);
+  }
+};

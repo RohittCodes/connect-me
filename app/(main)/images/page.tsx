@@ -5,7 +5,6 @@ import { getImages } from "@/actions/images";
 import {
   Pagination,
   PaginationContent,
-  PaginationItem,
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
