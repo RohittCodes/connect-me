@@ -1,13 +1,11 @@
 "use client";
 
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
   images:
-    typeof window !== undefined
-      ? <number[]>(
-          JSON.parse(window.localStorage?.getItem("likedImages") || "[]")
-        )
+    typeof window !== "undefined"
+      ? <number[]>JSON.parse(localStorage.getItem("likedImages") || "[]")
       : [],
 };
 
@@ -18,21 +16,14 @@ export const imageSlice = createSlice({
     likeImage: (state, action) => {
       const images = action.payload.id;
       state.images.push(images);
-
-      if (typeof window !== "undefined") {
-        localStorage.setItem("likedImages", JSON.stringify(state.images));
-      }
-
-      console.log(window);
+      const likedImages = JSON.stringify(state.images);
+      localStorage.setItem("likedImages", likedImages);
     },
     unlikeImage: (state, action) => {
       state.images = state.images.filter(
         (imageId) => imageId !== action.payload.id
       );
-
-      if (typeof window !== "undefined") {
-        localStorage.setItem("likedImages", JSON.stringify(state.images));
-      }
+      localStorage.setItem("likedImages", JSON.stringify(state.images));
     },
   },
 });

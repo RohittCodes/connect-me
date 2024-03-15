@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   posts:
-    typeof window !== undefined
+    typeof window !== "undefined"
       ? <number[]>JSON.parse(localStorage.getItem("likedPosts") || "[]")
       : [],
 };
@@ -14,19 +14,16 @@ export const postSlice = createSlice({
     likePost: (state, action) => {
       const posts = action.payload.id;
       state.posts.push(posts);
-
-      if (typeof window !== "undefined") {
-        localStorage.setItem("likedImages", JSON.stringify(state.posts));
-      }
+      localStorage.setItem("likedPosts", JSON.stringify(state.posts));
     },
     unlikePost: (state, action) => {
       state.posts = state.posts.filter(
         (postId) => postId !== action.payload.id
       );
-
-      if (typeof window !== "undefined") {
-        localStorage.setItem("likedImages", JSON.stringify(state.posts));
-      }
+      let likedPosts = localStorage.getItem("likedPosts");
+      (likedPosts as any) = likedPosts?.match(
+        new RegExp(`\\b${action.payload.id}\\b`)
+      );
     },
   },
 });

@@ -1,10 +1,10 @@
 "use client";
 
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import postSaveReducer from "@/features/saves/postSlice";
-import postLikeReducer from "@/features/likes/postSlice";
-import imageLikeReducer from "@/features/likes/imageSlice";
-import imageSaveReducer from "@/features/saves/imageSlice";
+import postSaveReducer from "@/app/store/saves/postSlice";
+import postLikeReducer from "@/app/store/likes/postSlice";
+import imageLikeReducer from "@/app/store/likes/imageSlice";
+import imageSaveReducer from "@/app/store/saves/imageSlice";
 
 const reducers = combineReducers({
   savedPosts: postSaveReducer,

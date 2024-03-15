@@ -14,19 +14,13 @@ export const imageSlice = createSlice({
     saveImage: (state, action) => {
       const images = action.payload.id;
       state.images.push(images);
-
-      if (typeof window !== "undefined") {
-        localStorage.setItem("savedImages", JSON.stringify(state.images));
-      }
+      localStorage.setItem("savedImages", JSON.stringify(state.images));
     },
     removeImage: (state, action) => {
       state.images = state.images.filter(
         (imageId) => imageId !== action.payload.id
       );
-
-      if (typeof window !== "undefined") {
-        localStorage.setItem("savedImages", JSON.stringify(state.images));
-      }
+      localStorage.setItem("savedImages", JSON.stringify(state.images));
     },
   },
 });

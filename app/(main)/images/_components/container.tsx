@@ -13,8 +13,8 @@ import { Bookmark, Download, Heart, HeartOff } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { likeImage, unlikeImage } from "@/features/likes/imageSlice";
-import { saveImage, removeImage } from "@/features/saves/imageSlice";
+import { likeImage, unlikeImage } from "@/app/store/likes/imageSlice";
+import { saveImage, removeImage } from "@/app/store/saves/imageSlice";
 import { cn } from "@/lib/utils";
 
 interface CardHeaderProps {
