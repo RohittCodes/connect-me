@@ -4,14 +4,18 @@ import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Bookmark, Download, Heart, HeartOff } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { likeImage, unlikeImage } from "@/features/likes/imageSlice";
+import { saveImage, removeImage } from "@/features/saves/imageSlice";
+import { cn } from "@/lib/utils";
 
 interface CardHeaderProps {
   id: number;
@@ -21,32 +25,59 @@ interface CardHeaderProps {
   loading?: boolean;
 }
 
-export const Container = ({
-  title,
-  id,
-  description,
-  imageUrl,
-  loading,
-}: CardHeaderProps) => {
-  const router = useRouter();
-
+export const Container = ({ title, id, imageUrl }: CardHeaderProps) => {
   const imageId = id.toString();
+  const dispatch = useDispatch();
 
-  const handleRouter = (href: string) => {
-    router.push(`images/${href}`);
+  const likedImages = useSelector((state: any) => state?.likedImages?.images);
+  const savedImages = useSelector((state: any) => state?.savedImages?.images);
+
+  const handleLike = () => {
+    if (likedImages.includes(id)) {
+      dispatch(unlikeImage({ id }));
+    } else {
+      dispatch(likeImage({ id }));
+    }
+  };
+
+  const handleSave = () => {
+    if (savedImages.includes(id)) {
+      dispatch(removeImage({ id }));
+    } else {
+      dispatch(saveImage({ id }));
+    }
   };
 
   return (
-    <Card className="">
-      <CardHeader>
-        <CardTitle>{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
+    <Card className="h-76 py-2 px-2">
+      <Link href={`/images/${imageId}`}>
+        <CardContent className="px-0 py-0 cursor-pointer">
+          <Image
+            src={imageUrl}
+            alt={title}
+            width={150}
+            height={150}
+            className="w-full h-52 object-cover rounded-md"
+          />
+        </CardContent>
+      </Link>
+      <CardHeader className="px-0 py-2">
+        <CardTitle className="text-wrap line-clamp-1 text-ellipsis">
+          {title}
+        </CardTitle>
       </CardHeader>
-      <CardContent>
-        <Image src={imageUrl} alt={title} width={150} height={150} />
-      </CardContent>
-      <CardFooter>
-        <Button onClick={() => handleRouter(imageId)}>View</Button>
+      <CardFooter className="flex gap-2 h-fit py-2 px-2 justify-end">
+        <Button size="icon">
+          <Download />
+        </Button>
+        <Button onClick={handleLike} size="icon">
+          <Heart className={cn(likedImages.includes(id) ? "fill-white" : "")} />
+        </Button>
+        <Button onClick={handleSave} size="icon">
+          <Bookmark
+            className={cn(savedImages.includes(id) ? "fill-white" : "")}
+          />
+        </Button>
       </CardFooter>
     </Card>
   );

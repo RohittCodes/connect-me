@@ -31,7 +31,7 @@ const SideNavbar = () => {
     },
     {
       title: "Liked",
-      ref: "/LucideHeart",
+      ref: "/liked",
       icon: LucideHeart,
     },
   ];
