@@ -31,3 +31,14 @@ export const getArrayImages = async (imageIds: string[]) => {
     console.error(error);
   }
 };
+
+export const searchListWithTitle = async (title: string) => {
+  try {
+    const responseList = await axios.get(
+      `https://jsonplaceholder.typicode.com/photos?title=${title}`
+    );
+    return responseList.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
