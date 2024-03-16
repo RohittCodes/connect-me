@@ -23,7 +23,12 @@ const ImagesHolder = () => {
     getData();
   }, []);
 
-  if (images.length === 0) return <div>No saved images</div>;
+  if (images.length === 0)
+    return (
+      <div className="h-[calc(100vh-256px)] flex items-center justify-center">
+        No liked images
+      </div>
+    );
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">

@@ -23,7 +23,12 @@ const PostsHolder = () => {
     getData();
   }, []);
 
-  if (posts.length === 0) return <div>No saved posts</div>;
+  if (posts.length === 0)
+    return (
+      <div className="h-[calc(100vh-256px)] flex items-center justify-center">
+        No liked posts
+      </div>
+    );
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

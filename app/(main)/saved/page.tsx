@@ -1,6 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import ImagesHolder from "./_components/images/images";
-import PostsHolder from "./_components/posts/posts";
+import ImagesHolder from "./_components/images";
+import PostsHolder from "./_components/posts";
 
 const SavesPage = () => {
   return (

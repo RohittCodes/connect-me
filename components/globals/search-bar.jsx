@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { Input } from "../ui/input";
 import { Cross, DeleteIcon, Search } from "lucide-react";
@@ -7,8 +7,22 @@ import SearchResultsList from "./search-results-list";
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-
+  const [active, setActive] = useState(false);
   const [loading, setLoading] = useState(false);
+  const searchRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        onViewOffClick();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleSearch = async () => {
     try {
@@ -36,11 +50,22 @@ const SearchBar = () => {
   const handleChange = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
+    if (query.length > 0) {
+      setActive(true);
+    } else {
+      setActive(false);
+    }
     handleSearch(query);
   };
 
+  const onViewOffClick = () => {
+    setActive(false);
+    setSearchQuery("");
+    setSearchResults([]);
+  };
+
   return (
-    <div className="relative w-full">
+    <div className="relative w-full" ref={searchRef}>
       <div className="flex items-center bg-background-components border rounded-lg px-2 w-full">
         <Input
           type="text"
@@ -51,7 +76,7 @@ const SearchBar = () => {
         />
         <Search className="text-text-disabled" />
       </div>
-      {searchQuery && (
+      {searchQuery && active && (
         <div className="absolute top-full rounded-md left-0 bg-white border w-full border-border-secondary rounded-b-lg shadow-lg">
           {loading && (
             <div className="w-full font-semibold text-gray-500 p-2">
