@@ -12,7 +12,8 @@ import {
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
-import { Bookmark, Heart, Share } from "lucide-react";
+import { Bookmark, EyeIcon, Heart, Share } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -75,7 +76,9 @@ const PostsContainer = ({ userId, id, title, body }: PostsContainerProps) => {
         )}
         <div className="flex gap-2 justify-end">
           <Button size="icon" className="h-8 w-8 px-1 py-1">
-            <Share size="20" />
+            <Link href={`/posts/${id}`}>
+              <EyeIcon />
+            </Link>
           </Button>
           <Button onClick={handleLike} className="h-8 w-8 px-1 py-1">
             <Heart

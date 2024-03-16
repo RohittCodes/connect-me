@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Bookmark, Download, Heart, HeartOff } from "lucide-react";
+import { Bookmark, Eye, Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
@@ -67,9 +67,11 @@ export const Container = ({ title, id, imageUrl }: CardHeaderProps) => {
         </CardTitle>
       </CardHeader>
       <CardFooter className="flex gap-2 h-fit py-2 px-2 justify-end">
-        <Button size="icon">
-          <Download />
-        </Button>
+        <Link href={`/images/${imageId}`}>
+          <Button size="icon">
+            <Eye />
+          </Button>
+        </Link>
         <Button onClick={handleLike} size="icon">
           <Heart className={cn(likedImages.includes(id) ? "fill-white" : "")} />
         </Button>

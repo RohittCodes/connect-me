@@ -10,22 +10,12 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-  CommandShortcut,
 } from "@/components/ui/command";
-import {
-  Calendar,
-  PersonStanding,
-  Rocket,
-  Settings,
-  SmileIcon,
-} from "lucide-react";
-import { BsEnvelope } from "react-icons/bs";
-import { Input } from "../ui/input";
+import { Rocket } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { get } from "http";
 
-export function CommandDialogDemo() {
+export function CommandBox() {
   const [open, setOpen] = React.useState(false);
   const [image, setImage] = React.useState([] as any[]);
   const [posts, setPosts] = React.useState([] as any[]);
@@ -62,19 +52,10 @@ export function CommandDialogDemo() {
   }, []);
 
   return (
-    <>
-      <div className="w-[324px] flex border border-input rounded-md items-center hover:bg-muted">
-        {" "}
-        <Input
-          className="h-10 outline-none border-0 active:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 w-[280px] cursor-pointer bg-transparent"
-          readOnly
-          onClick={() => setOpen(true)}
-          placeholder="Search for titles..."
-        />
-        <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
-          <span className="text-xs">⌘</span>K
-        </kbd>
-      </div>
+    <div>
+      <kbd className="pointer-events-none inline-flex w-54 h-8 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[12px] text-muted-foreground opacity-100">
+        Shortcuts <span className="text-sm">⌘</span>K
+      </kbd>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput placeholder="Type a command or search..." />
         <CommandList>
@@ -108,6 +89,6 @@ export function CommandDialogDemo() {
           </CommandGroup>
         </CommandList>
       </CommandDialog>
-    </>
+    </div>
   );
 }
