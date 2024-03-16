@@ -84,15 +84,15 @@ const PostPage = ({ params: { postId } }: Params) => {
   };
 
   return (
-    <div className="flex items-center justify-center h-[calc(100vh-128px)]">
+    <div className="flex items-center justify-center h-[calc(100vh-256px)] md:h-[calc(100vh-128px)]">
       {isLoading ? (
         <Skeleton className="w-1/3" />
       ) : (
-        <Card className="w-2/3 px-4 py-4">
+        <Card className="w-full md:w-2/3 px-4 py-4">
           <CardHeader className="px-2">
-            <CardTitle className="text-xl flex">
+            <CardTitle className="text-xl flex justify-between">
               {data.title}
-              <p className="text-xs w-1/3 text-right">{data.id}</p>
+              <p className="text-xs w-1/6 md:w-1/3 text-right">{data.id}</p>
             </CardTitle>
           </CardHeader>
           <CardContent className="bg-gray-100 h-full px-4 py-4 rounded-md flex flex-col w-full items-center justify-center">

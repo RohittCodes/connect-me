@@ -26,7 +26,7 @@ const ImagesHolder = () => {
   if (images.length === 0) return <div>No saved images</div>;
 
   return (
-    <div className="grid grid-cols-3 gap-4 w-full">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
       {!loading
         ? images.map((image: any) => (
             <Container

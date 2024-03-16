@@ -26,7 +26,7 @@ const PostsHolder = () => {
   if (posts.length === 0) return <div>No saved posts</div>;
 
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {!loading
         ? posts.map((post: any) => (
             <PostsContainer

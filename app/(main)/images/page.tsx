@@ -2,6 +2,7 @@
 
 import { Container, ContainerSkeleton } from "./_components/container";
 import { getImages } from "@/actions/images";
+import { Button } from "@/components/ui/button";
 import {
   Pagination,
   PaginationContent,
@@ -29,7 +30,7 @@ const ImagesPage = () => {
 
   return (
     <div className="flex flex-col h-full gap-4">
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {!isLoading
           ? data
               ?.slice(first, last)
@@ -48,26 +49,24 @@ const ImagesPage = () => {
       {!isLoading && (
         <Pagination className="">
           <PaginationContent>
-            <PaginationPrevious
+            <Button
               onClick={() => {
                 setFirst(first - items);
                 setLast(last - items);
               }}
-              className={first <= 1 ? "cursor-not-allowed" : "cursor-pointer"}
+              disabled={first <= 1}
             >
               Previous
-            </PaginationPrevious>
-            <PaginationNext
+            </Button>
+            <Button
               onClick={() => {
                 setFirst(first + items);
                 setLast(last + items);
               }}
-              className={
-                last >= data?.length ? "cursor-not-allowed" : "cursor-pointer"
-              }
+              disabled={last >= data?.length}
             >
               Next
-            </PaginationNext>
+            </Button>
           </PaginationContent>
         </Pagination>
       )}

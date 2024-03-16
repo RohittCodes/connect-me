@@ -52,7 +52,7 @@ export function CommandBox() {
   }, []);
 
   return (
-    <div>
+    <div className="hidden lg:flex">
       <kbd className="pointer-events-none inline-flex w-54 h-8 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[12px] text-muted-foreground opacity-100">
         Shortcuts <span className="text-sm">⌘</span>K
       </kbd>

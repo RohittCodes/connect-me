@@ -24,8 +24,8 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="flex justify-center items-center h-16 fixed w-full bg-white">
-      <div className="flex justify-between items-center h-full w-full border-b-2 px-4 gap-44">
+    <div className="flex justify-center py-1 md:py-0 items-center h-28 md:h-16 fixed top-0 w-full bg-white">
+      <div className="flex flex-col gap-2 md:flex-row md:justify-between items-center h-full w-full border-b-2 px-4 md:gap-44">
         <div className="text-sm w-36 font-semibold text-gray-500">
           <h2 className="text-2xl font-bold text-indigo-500">
             ConnectMe! <p className="ml-2 text-xs font-light">{quote}</p>

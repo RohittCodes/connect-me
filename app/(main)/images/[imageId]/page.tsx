@@ -71,7 +71,7 @@ const ImagePage = ({ params: { imageId } }: Params) => {
   };
 
   return (
-    <div className="flex items-center justify-center h-[calc(100vh-128px)]">
+    <div className="flex items-center justify-center h-[calc(100vh-260px)] md:h-[calc(100vh-128px)]">
       {loading ? (
         <div className="h-76 py-2 px-2 w-1/3">
           <CardContent className="flex items-center justify-center px-0 py-0">

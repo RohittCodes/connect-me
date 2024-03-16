@@ -7,7 +7,6 @@ import {
   Container,
   ContainerSkeleton,
 } from "@/app/(main)/images/_components/container";
-import { PostsContainerSkeleton } from "@/app/(main)/posts/_components/container";
 
 const ImagesHolder = () => {
   const savedImages = useSelector((state: any) => state?.savedImages?.images);
@@ -25,7 +24,7 @@ const ImagesHolder = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-3 gap-4 w-full">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full">
       {!loading
         ? images.map((image: any) => (
             <Container

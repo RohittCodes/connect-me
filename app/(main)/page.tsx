@@ -61,7 +61,7 @@ const MainPage = () => {
           </h1>
           <Button onClick={() => handleNavigate("/posts")}>Read more</Button>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {!postsLoading
             ? posts.map((post) => (
                 <PostsContainer
@@ -83,7 +83,7 @@ const MainPage = () => {
         </h1>
         <Button onClick={() => handleNavigate("/images")}>Visit more</Button>
       </div>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {!imagesLoading
           ? images.map((image) => (
               <Container
