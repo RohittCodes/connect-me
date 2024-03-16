@@ -8,9 +8,10 @@
 
 You can easily contribute to the application by forking it here on github, and sending a PR(Pull Request). You can also share your feedbacks or features in the Issues tab or Discussion tab
 
-## Installation
+## Installation and Setup
 
-Provide step by step series of examples and explanations about how to get a development environment running.
+#### Setup
+1. Clone the repo into your local system or fork the repo
 
 ```
 # Clone the repository
@@ -26,4 +27,24 @@ npm install
 npm run dev
 ```
 
-Check it running on `https://localhost:3000`
+2. Check it running on `https://localhost:3000`
+
+## Docker setup and deployment
+
+To run the docker image pull the image using
+
+```
+docker pull rohittcodes/connect-me:1.0
+```
+
+Run the image using
+
+```
+docker run -p {your-dedicated-port}:3000 imageId
+```
+
+You can get the imageId by running the following command:
+
+```
+docker images
+```
