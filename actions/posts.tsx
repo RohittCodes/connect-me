@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// axios call to get a list of posts from the API
 export const getPosts = async () => {
   try {
     const response = await axios.get(
@@ -11,6 +12,7 @@ export const getPosts = async () => {
   }
 };
 
+// axios call to get a single post from the API
 export const getPost = async (postId: number) => {
   try {
     const response = await axios.get(
@@ -22,6 +24,7 @@ export const getPost = async (postId: number) => {
   }
 };
 
+// axios call to get a particular array of posts from the API
 export const getArrayPosts = async (postIds: number[]) => {
   try {
     const response = postIds.map((id) => getPost(id));

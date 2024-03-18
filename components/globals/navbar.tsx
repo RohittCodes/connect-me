@@ -16,6 +16,7 @@ const Navbar = () => {
 
   const [quote, setQuote] = useState(welcomeQuotes[0]);
 
+  // Change quote every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setQuote(welcomeQuotes[Math.floor(Math.random() * welcomeQuotes.length)]);

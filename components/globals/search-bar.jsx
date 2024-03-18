@@ -11,6 +11,7 @@ const SearchBar = () => {
   const [loading, setLoading] = useState(false);
   const searchRef = useRef(null);
 
+  // Close search bar when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
@@ -24,6 +25,7 @@ const SearchBar = () => {
     };
   }, []);
 
+  // Search for posts and images based on search query
   const handleSearch = async () => {
     try {
       setLoading(true);
@@ -47,6 +49,7 @@ const SearchBar = () => {
     }
   };
 
+  // Handle search input change
   const handleChange = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
@@ -58,6 +61,7 @@ const SearchBar = () => {
     handleSearch(query);
   };
 
+  // Close search bar and reset search query and results
   const onViewOffClick = () => {
     setActive(false);
     setSearchQuery("");

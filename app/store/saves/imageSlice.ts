@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// Initial state
 const initialState = {
   images:
     typeof window !== "undefined"
@@ -7,6 +8,7 @@ const initialState = {
       : [],
 };
 
+// Slice for saved images
 export const imageSlice = createSlice({
   name: "savedImages",
   initialState,

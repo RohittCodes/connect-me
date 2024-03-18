@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// Initial state
 const initialState = {
   posts:
     typeof window !== "undefined"
@@ -7,6 +8,7 @@ const initialState = {
       : [],
 };
 
+// Slice for liked posts
 export const postSlice = createSlice({
   name: "likedPosts",
   initialState,

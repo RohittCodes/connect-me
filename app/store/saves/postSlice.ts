@@ -2,6 +2,7 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 
+// Initial state
 const initialState = {
   posts:
     typeof window !== "undefined"
@@ -9,6 +10,7 @@ const initialState = {
       : [],
 };
 
+// Slice for saved posts
 export const postSlice = createSlice({
   name: "savedPosts",
   initialState,

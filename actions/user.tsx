@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// axios call to get a list of users from the API
 export const getUser = async (userId: number) => {
   try {
     const response = await axios.get(

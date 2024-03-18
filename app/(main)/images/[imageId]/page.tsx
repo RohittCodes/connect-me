@@ -61,6 +61,7 @@ const ImagePage = ({ params: { imageId } }: Params) => {
   };
   const displayImageId = parseInt(imageId);
 
+  // Function to handle the tweet button
   const handleTweet = () => {
     const url = `https://jsonplaceholder.typicode.com/photos/${imageId}`;
     const text = `Check out this image on Images!`;

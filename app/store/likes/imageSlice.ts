@@ -1,7 +1,8 @@
 "use client";
 
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
+// Initial state
 const initialState = {
   images:
     typeof window !== "undefined"
@@ -9,6 +10,7 @@ const initialState = {
       : [],
 };
 
+// Slice for liked images
 export const imageSlice = createSlice({
   name: "likedImages",
   initialState,

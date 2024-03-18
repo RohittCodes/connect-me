@@ -21,6 +21,7 @@ const MainPage = () => {
     router.push(item);
   };
 
+  // Fetch posts from the API using axios with a limit of 5
   const getPosts = async () => {
     try {
       const response = await axios.get(
@@ -34,6 +35,7 @@ const MainPage = () => {
     }
   };
 
+  // Fetch images from the API using axios with a limit of 5
   const getImages = async () => {
     try {
       const response = await axios.get(
